@@ -7,7 +7,7 @@ import pytest
 BASE_DIR = Path(__file__).resolve().parent.parent
 BACKEND_DIR_NAME = 'backend'
 FRONTEND_DIR_NAME = 'frontend'
-NGINX_DIR_NAME = 'nginx'
+NGINX_DIR_NAME = 'gateway'
 DEPLOY_INFO_FILE_NAME = 'tests.yml'
 KITTYGRAM_DOMAIN_KEY = 'kittygram_domain'
 TASKI_DOMAIN_KEY = 'taski_domain'
@@ -42,7 +42,7 @@ def nginx_dir_info() -> tuple[Path, str]:
 
 @pytest.fixture(scope='session')
 def expected_nginx_files() -> set[str]:
-    return {'nginx.conf', 'Dockerfile'}
+    return {'gateway.conf', 'Dockerfile'}
 
 
 @pytest.fixture(scope='session')
