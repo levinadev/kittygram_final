@@ -6,7 +6,10 @@ volumes:
 services:
   db:
     image: postgres:13.10
-    env_file: .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - pg_data_production:/var/lib/postgresql/data
     healthcheck:
@@ -17,7 +20,15 @@ services:
 
   backend:
     image: annalevina/kittygram_backend
-    env_file: .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_DEBUG: ${DJANGO_DEBUG}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
     volumes:
       - static_volume:/app/collected_static
       - media_volume:/app/media
@@ -27,14 +38,12 @@ services:
 
   frontend:
     image: annalevina/kittygram_frontend
-    env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static_volume:/frontend_static
 
   gateway:
     image: annalevina/kittygram_gateway
-    env_file: .env
     volumes:
       - static_volume:/static/
       - media_volume:/media/

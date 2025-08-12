@@ -1,26 +1,116 @@
-#  Как работать с репозиторием финального задания
+# Kittygram
 
-## Что нужно сделать
+Проект Kittygram — это приложение для обмена фотографиями кошек.
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+Оно позволяет:
+- Загружать карточку с информацией о кошке — фото, имя, год рождения, цвет кота и достижения
+- Редактировать информацию о кошке
+- Удалять карточку с кошкой
+---
 
-## Как проверить работу с помощью автотестов
+## Технологии
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+- Python 3.11  
+- Django 3.2  
+- Django REST Framework  
+- PostgreSQL 13  
+- Docker & Docker Compose  
+- GitHub Actions (CI/CD)  
+- React (Frontend)  
+- Gunicorn  
+- Nginx  
+
+---
+
+## Установка и запуск
+
+1. Клонирование репозитория:
+
+```
+git clone https://github.com/yourusername/kittygram.git
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+3. Запуск контейнеров:
 
-## Чек-лист для проверки перед отправкой задания
+```
+docker-compose -f docker-compose.production.yml up -d
+```
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+4. Остановка контейнеров:
+```
+docker-compose -f docker-compose.production.yml down
+```
+
+
+## Примеры запросов к API
+
+1. Регистрация
+```
+curl -X POST {{DOMAIN}}/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your_username", "password": "your_password"}'
+```
+
+Ответ:
+```
+{
+    "email": "",
+    "username": "your_username",
+    "id": 4
+}
+```
+
+2. Получить токен
+```
+curl -X POST {{DOMAIN}}/api/token/login/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "your_username", "password": "your_password"}'
+```
+
+Ответ:
+```
+{
+  "auth_token": "your_token"
+}
+```
+
+3. Получить список кошек
+```
+curl -X GET {{DOMAIN}}/api/cats/ \
+  -H "Authorization: Token your_token"
+```
+
+4. Создать кошку
+```
+curl -X POST {{DOMAIN}}/api/cats/ \
+  -H "Authorization: Token your_token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Барсик",
+    "color": "#000000",
+    "birth_year": 2020,
+    "achievements": [{"achievement_name": "Лучший охотник"}],
+    "image": null
+  }'
+```
+
+5. Обновить кошку
+```
+curl -X PATCH {{DOMAIN}}/api/cats/2/ \
+  -H "Authorization: Token your_token" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Рыжик"}'
+```
+
+6. Удалить кошку
+```
+curl -X DELETE {{DOMAIN}}/api/cats/2/ \
+  -H "Authorization: Token your_token"
+```
+
+Автор
+
+- Имя: Анна
+- Email: anna45dd@yandex.ru
+- GitHub: https://github.com/levinadev
