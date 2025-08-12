@@ -27,7 +27,7 @@
 1. Клонирование репозитория:
 
 ```
-git clone https://github.com/yourusername/kittygram.git
+git clone https://github.com/levinadev/kittygram_final.git
 ```
 
 
@@ -47,7 +47,7 @@ docker-compose -f docker-compose.production.yml down
 
 1. Регистрация
 ```
-curl -X POST {{DOMAIN}}/api/token/ \
+curl -X POST http://127.0.0.1:8000/api/token/ \
   -H "Content-Type: application/json" \
   -d '{"username": "your_username", "password": "your_password"}'
 ```
@@ -63,7 +63,7 @@ curl -X POST {{DOMAIN}}/api/token/ \
 
 2. Получить токен
 ```
-curl -X POST {{DOMAIN}}/api/token/login/ \
+curl -X POST http://127.0.0.1:8000/api/token/login/ \
   -H "Content-Type: application/json" \
   -d '{"username": "your_username", "password": "your_password"}'
 ```
@@ -77,13 +77,13 @@ curl -X POST {{DOMAIN}}/api/token/login/ \
 
 3. Получить список кошек
 ```
-curl -X GET {{DOMAIN}}/api/cats/ \
+curl -X GET http://127.0.0.1:8000/api/cats/ \
   -H "Authorization: Token your_token"
 ```
 
 4. Создать кошку
 ```
-curl -X POST {{DOMAIN}}/api/cats/ \
+curl -X POST http://127.0.0.1:8000/api/cats/ \
   -H "Authorization: Token your_token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -97,7 +97,7 @@ curl -X POST {{DOMAIN}}/api/cats/ \
 
 5. Обновить кошку
 ```
-curl -X PATCH {{DOMAIN}}/api/cats/2/ \
+curl -X PATCH http://127.0.0.1:8000/api/cats/2/ \
   -H "Authorization: Token your_token" \
   -H "Content-Type: application/json" \
   -d '{"name": "Рыжик"}'
@@ -105,7 +105,7 @@ curl -X PATCH {{DOMAIN}}/api/cats/2/ \
 
 6. Удалить кошку
 ```
-curl -X DELETE {{DOMAIN}}/api/cats/2/ \
+curl -X DELETE http://127.0.0.1:8000/api/cats/2/ \
   -H "Authorization: Token your_token"
 ```
 
