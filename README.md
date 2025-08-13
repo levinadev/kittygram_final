@@ -8,18 +8,6 @@
 - Редактировать информацию о кошке
 - Удалять карточку с кошкой
 
-## Технологии
-
-- Python 3.11
-- Django 3.2
-- Django REST Framework
-- PostgreSQL 13
-- Docker & Docker Compose
-- GitHub Actions (CI/CD)
-- React (Frontend)
-- Gunicorn
-- Nginx
-
 ## Установка и запуск
 
 1. Клонирование репозитория:
@@ -114,7 +102,19 @@ curl -X DELETE http://127.0.0.1:8000/api/cats/2/ \
   -H "Authorization: Token your_token"
 ```
 
-Автор
+## Технологии
+
+- Python 3.11
+- Django 3.2
+- Django REST Framework
+- PostgreSQL 13
+- Docker & Docker Compose
+- GitHub Actions (CI/CD)
+- React (Frontend)
+- Gunicorn
+- Nginx
+
+## Автор
 
 - Имя: Анна
 - Email: anna45dd@yandex.ru
