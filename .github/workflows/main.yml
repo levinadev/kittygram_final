@@ -139,6 +139,8 @@ jobs:
       DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
       DJANGO_DEBUG: ${{ secrets.DJANGO_DEBUG }}
       DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+      SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
