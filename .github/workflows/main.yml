@@ -134,7 +134,9 @@ jobs:
       - name: Setup SSH key with passphrase
         run: |
           eval "$(ssh-agent -s)"
-          echo "${{ secrets.SSH_KEY }}" | tr -d '\r' | ssh-add - <<< "${{ secrets.SSH_PASSPHRASE }}"
+          echo "${{ secrets.SSH_KEY }}" > key.pem
+          chmod 600 key.pem
+          ssh-add key.pem <<< "${{ secrets.SSH_PASSPHRASE }}"
 
       - name: Copy docker-compose.yml via ssh
         uses: appleboy/scp-action@master
