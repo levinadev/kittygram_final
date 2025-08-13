@@ -12,4 +12,6 @@ DB_PORT = os.getenv("DB_PORT", "5432")
 
 DJANGO_SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 DJANGO_DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
-DJANGO_ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost").split(",")
+DJANGO_ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost").split(
+    ","
+)
