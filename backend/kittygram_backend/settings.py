@@ -1,16 +1,9 @@
 import os
 from pathlib import Path
 
-from config import (
-    DB_HOST,
-    DB_PORT,
-    DJANGO_ALLOWED_HOSTS,
-    DJANGO_DEBUG,
-    DJANGO_SECRET_KEY,
-    POSTGRES_DB,
-    POSTGRES_PASSWORD,
-    POSTGRES_USER,
-)
+from config import (DB_HOST, DB_PORT, DJANGO_ALLOWED_HOSTS, DJANGO_DEBUG,
+                    DJANGO_SECRET_KEY, POSTGRES_DB, POSTGRES_PASSWORD,
+                    POSTGRES_USER)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
