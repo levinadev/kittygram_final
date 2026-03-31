@@ -6,7 +6,7 @@ volumes:
 services:
   db:
     image: postgres:13.10
-    container_name: db
+    container_name: kittygram-db
     environment:
       - POSTGRES_PASSWORD=kittygram_password
       - POSTGRES_USER=kittygram_user
