@@ -62,7 +62,7 @@ export const SignUp = ({ extraClass = "" }) => {
           if (typeof err.username === "object") {
             setErrorLogin("Пользователь с таким именем уже зарегистрирован");
           } else if (typeof err.password === "object") {
-            setErrorPassword(err.password[0]);
+            setErrorPassword("Пароль слишком простой");
           } else {
             setErrorDoublePassword("Ошибка сервера");
           }
